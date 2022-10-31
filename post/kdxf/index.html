@@ -1,0 +1,249 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KDXF平板上网方式 | maojy2006</title>
+<link rel="shortcut icon" href="https://maojy2006.cn/favicon.ico?v=1667203272843">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maojy2006.cn/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="KDXF平板上网方式 | maojy2006 - Atom Feed" href="https://maojy2006.cn/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="🚫网课的错误打开方式
+🚫仅对技术进行研究，请勿实践
+🚩 腾讯会议内置浏览器
+tips:如果没有软件可略过
+实现方法
+设置-关于我们-软件许可及服务协议-腾讯隐私政策-网站导航（最底）-搜索-网页
+原理
+软件内置浏览器内核且有用户界面
+..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+    <script src="//unpkg.com/leancloud-storage@4.13.3/dist/av-min.js"></script>
+    <script src="/media/scripts/Valine.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://maojy2006.cn">
+  <img class="avatar" src="https://maojy2006.cn/images/avatar.png?v=1667203272843" alt="">
+  </a>
+  <h1 class="site-title">
+    maojy2006
+  </h1>
+  <p class="site-description">
+    抓住我了耶
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="https://maojy2006.cn/post/game" class="menu">
+          游戏
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              KDXF平板上网方式
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-09-01
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <p>🚫网课的错误打开方式<br>
+🚫仅对技术进行研究，请勿实践</p>
+<h2 id="腾讯会议内置浏览器">🚩 腾讯会议内置浏览器</h2>
+<p>tips:如果没有软件可略过</p>
+<h3 id="实现方法">实现方法</h3>
+<p>设置-关于我们-软件许可及服务协议-腾讯隐私政策-网站导航（最底）-搜索-网页</p>
+<h3 id="原理">原理</h3>
+<p>软件内置浏览器内核且有用户界面<br>
+系统对此软件的出入网络并未限制</p>
+<h2 id="阿里云oss云存储-仅播放视频">🚩 阿里云oss云存储-仅播放视频</h2>
+<p>tips:此方法可能会产生费用 且需要平板有MX Player软件</p>
+<h3 id="实现方法-2">实现方法</h3>
+<p>1-<a href="https://www.aliyun.com/activity/new?userCode=mmkeuho6">创建阿里云账号</a> 进入页面后点击右上角创建帐户 (tips:此链接带有推广)<br>
+2-(可选) 在<a href="https://www.aliyun.com/product/oss">oss产品页</a>内，新人特惠专区领取100G/3月存储空间<br>
+3-在<a href="https://www.aliyun.com/product/oss">oss产品页</a>内，点击立刻开通，开通oss功能<br>
+4-在<a href="https://oss.console.aliyun.com/bucket">oss控制台</a>中，点击创建Bucket，填写Bucket信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信息</th>
+<th style="text-align:center">要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Bucket名称</td>
+<td style="text-align:center">自己取 但是要在平板输入，建议简单好记</td>
+</tr>
+<tr>
+<td style="text-align:center">地域</td>
+<td style="text-align:center">自选 但是只有香港才有5G/月免费流量*</td>
+</tr>
+<tr>
+<td style="text-align:center">所属资源组</td>
+<td style="text-align:center">选择仅有的那个</td>
+</tr>
+<tr>
+<td style="text-align:center">存储类型</td>
+<td style="text-align:center">标准存储</td>
+</tr>
+<tr>
+<td style="text-align:center">读写权限（一定要）</td>
+<td style="text-align:center">公共读或公共读写</td>
+</tr>
+</tbody>
+</table>
+<p>5-进入Bucket管理页面<br>
+<code>https://oss.console.aliyun.com/bucket/地域代码/Bucket名称/object</code><br>
+进入文件管理<br>
+6-上传文件（视频）<br>
+7-进入文件详情页面 得到文件url<br>
+8-平板MX PLayer软件-播放-流式播放-输入得到的url</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE%E5%86%85%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8">🚩 腾讯会议内置浏览器</a>
+<ul>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95">实现方法</a></li>
+<li><a href="#%E5%8E%9F%E7%90%86">原理</a></li>
+</ul>
+</li>
+<li><a href="#%E9%98%BF%E9%87%8C%E4%BA%91oss%E4%BA%91%E5%AD%98%E5%82%A8-%E4%BB%85%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91">🚩 阿里云oss云存储-仅播放视频</a>
+<ul>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95-2">实现方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by Gridea & Github &Cloudflare Page
+  <a class="rss" href="https://maojy2006.cn/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+     
+    <script>
+        new Valine({
+          // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+          av: AV, 
+          el: '.comment',
+	          lang: 'zh-cn',//设置评论语言
+          emoticon_url: 'https://cloud.panjunwen.com/alu',
+          emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+          app_id: '6IV8UaqdVQfHBCp42DlVfgHz-MdYXbMMI',
+          app_key: '3HS8ibVBzr2Tg5Yaj4PsA6lL',
+          placeholder: '评论留言'
+        });
+    </script> 
+
+  </body>
+</html>
