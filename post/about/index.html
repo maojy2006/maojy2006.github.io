@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>关于 | maudoo</title>
+<link rel="shortcut icon" href="https://maojy2006.cn/favicon.ico?v=1699780723381">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maojy2006.cn/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="关于 | maudoo - Atom Feed" href="https://maojy2006.cn/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+欢迎来到我的小站呀，很高兴遇见你！🤝
+
+🏠 关于本站
+hi
+看到这里就说明我们有缘分噢
+突然有一天发现了好像我真的没有动态页面的需求
+于是在假期的末尾摸鱼上线了这个静态主页
+本站存储于Github
+由Cloudflare全球分发
+写这..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://maojy2006.cn">
+  <img class="avatar" src="https://maojy2006.cn/images/avatar.png?v=1699780723381" alt="">
+  </a>
+  <h1 class="site-title">
+    maudoo
+  </h1>
+  <p class="site-description">
+    抓住我了耶
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="https://maojy2006.cn/post/game" class="menu">
+          杂物
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="github.com/maojy2006" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              关于
+            </h2>
+            <div class="post-info">
+              <span>
+                2010-07-05
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <blockquote>
+<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+</blockquote>
+<h2 id="关于本站">🏠 关于本站</h2>
+<p>hi<br>
+看到这里就说明我们有缘分噢</p>
+<p>突然有一天发现了好像我真的没有动态页面的需求<br>
+于是在假期的末尾摸鱼上线了这个静态主页<br>
+本站存储于<a href="https://github.com/maojy2006/maojy2006.github.io">Github</a><br>
+由<a href="https://cloudflare.com/">Cloudflare</a>全球分发<br>
+写这段文字的软件是<a href="https://gridea.dev/">Gridea</a></p>
+<h2 id="联系我呀">📬 联系我呀</h2>
+<p><a href="mailto:hi@maojy2006.cn">hi@maojy2006.cn</a></p>
+<h2 id="左邻右舍">🍻 左邻右舍</h2>
+<p><a href="https://znwillbur.asia/">ZnWillbur</a><br>
+<a href="https://blog.sadnapma.cf/">SadnAp's Blog</a></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
+<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#%E5%B7%A6%E9%82%BB%E5%8F%B3%E8%88%8D">🍻 左邻右舍</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by Gridea & Github &Cloudflare Page
+  <a class="rss" href="https://maojy2006.cn/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+     <!--载入js，在</body>之前插入即可-->
+      <!--Leancloud 操作库:-->
+      <script src="//unpkg.com/leancloud-storage@4.13.3/dist/av-min.js"></script>
+      <!--Valine 的核心代码库-->
+      <script src="/media/scripts/Valine.min.js"></script>
+      <div class="comment"></div>
+    <script>
+        new Valine({
+          // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+          av: AV, 
+          el: '.comment',
+	          lang: 'zh-cn',//设置评论语言
+          emoticon_url: 'https://cloud.panjunwen.com/alu',
+          emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+          app_id: '6IV8UaqdVQfHBCp42DlVfgHz-MdYXbMMI',
+          app_key: '3HS8ibVBzr2Tg5Yaj4PsA6lL',
+          placeholder: '评论留言'
+        });
+    </script> 
+
+  </body>
+</html>
