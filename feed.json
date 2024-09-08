@@ -1,0 +1,27 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Maudoo&#x27;s blog",
+    "description": "",
+    "home_page_url": "https://maojy2006.github.io",
+    "feed_url": "https://maojy2006.github.io/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "maudoo"
+    },
+    "items": [
+        {
+            "id": "https://maojy2006.github.io/about-me.html",
+            "url": "https://maojy2006.github.io/about-me.html",
+            "title": "About ME",
+            "summary": "🤠",
+            "content_html": "<p>🤠</p>\n<p> </p>",
+            "author": {
+                "name": "maudoo"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-07T17:34:55+08:00",
+            "date_modified": "2024-09-07T17:34:55+08:00"
+        }
+    ]
+}

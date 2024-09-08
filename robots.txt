@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://maojy2006.github.io/sitemap.xml

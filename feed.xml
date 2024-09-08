@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>Maudoo&#x27;s blog</title>
+    <link href="https://maojy2006.github.io/feed.xml" rel="self" />
+    <link href="https://maojy2006.github.io" />
+    <updated>2024-09-07T17:34:55+08:00</updated>
+    <author>
+        <name>maudoo</name>
+    </author>
+    <id>https://maojy2006.github.io</id>
+
+    <entry>
+        <title>About ME</title>
+        <author>
+            <name>maudoo</name>
+        </author>
+        <link href="https://maojy2006.github.io/about-me.html"/>
+        <id>https://maojy2006.github.io/about-me.html</id>
+
+        <updated>2024-09-07T17:34:55+08:00</updated>
+            <summary>
+                <![CDATA[
+                    🤠
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>🤠</p>
+<p> </p>
+            ]]>
+        </content>
+    </entry>
+</feed>
