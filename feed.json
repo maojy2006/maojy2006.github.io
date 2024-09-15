@@ -10,18 +10,18 @@
     },
     "items": [
         {
-            "id": "https://maojy2006.github.io/about-me.html",
-            "url": "https://maojy2006.github.io/about-me.html",
-            "title": "About ME",
-            "summary": "🤠",
-            "content_html": "<p>🤠</p>\n<p> </p>",
+            "id": "https://maojy2006.github.io/about-me/",
+            "url": "https://maojy2006.github.io/about-me/",
+            "title": "📃退堂鼓一级表演家-Maudoo的说明书",
+            "summary": "👋Hi 这里是Maudoo的个人博客 这是一篇关于我的说明书，通过它你能更好的了解我 期待能和你交朋友 一起做有意思的事🧐 操作指南 联系我 随时找我 保养维护 故障排除 为什么没回复你",
+            "content_html": "<p class=\"align-center\">👋Hi 这里是Maudoo的个人博客</p>\n<p class=\"align-center\">这是一篇关于我的说明书，通过它你能更好的了解我</p>\n<p class=\"align-center\">期待能和你交朋友 一起做有意思的事🧐</p>\n<hr>\n<table style=\"border-collapse: collapse; width: 100%; height: 150.062px;\" border=\"1\">\n<tbody>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\">操作指南</td>\n<td style=\"width: 33.3007%; height: 50.0208px;\">联系我</td>\n<td style=\"width: 33.3037%; height: 50.0208px;\">随时找我</td>\n</tr>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\">保养维护</td>\n<td style=\"width: 33.3007%; height: 50.0208px;\"> </td>\n<td style=\"width: 33.3037%; height: 50.0208px;\"> </td>\n</tr>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\">故障排除</td>\n<td style=\"width: 33.3007%; height: 50.0208px;\">为什么没回复你</td>\n<td style=\"width: 33.3037%; height: 50.0208px;\"> </td>\n</tr>\n</tbody>\n</table>",
             "author": {
                 "name": "maudoo"
             },
             "tags": [
             ],
             "date_published": "2024-09-07T17:34:55+08:00",
-            "date_modified": "2024-09-07T17:34:55+08:00"
+            "date_modified": "2024-09-14T23:24:50+08:00"
         }
     ]
 }
