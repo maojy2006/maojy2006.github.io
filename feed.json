@@ -2,26 +2,40 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "Maudoo&#x27;s blog",
     "description": "",
-    "home_page_url": "https://maojy2006.github.io",
-    "feed_url": "https://maojy2006.github.io/feed.json",
+    "home_page_url": "https://maojy2006.cn",
+    "feed_url": "https://maojy2006.cn/feed.json",
     "user_comment": "",
     "author": {
         "name": "maudoo"
     },
     "items": [
         {
-            "id": "https://maojy2006.github.io/about-me/",
-            "url": "https://maojy2006.github.io/about-me/",
+            "id": "https://maojy2006.cn/vnconkylinoffline/",
+            "url": "https://maojy2006.cn/vnconkylinoffline/",
+            "title": "服务器VNCServer安装",
+            "summary": "环境：Kylin Linux Advanced Server release V10 (SP3) /(Lance)-aarch64-Build23/20230324 在 公网源 下载 tigervnc-server服务 上传至服务器 /root/tigervnc-server # ls /root/tigervnc-server 安装前检查 # rpm -qa | grep&hellip;",
+            "content_html": "<p>环境：Kylin Linux Advanced Server\nrelease V10 (SP3) /(Lance)-aarch64-Build23/20230324</p><h3 id=\"安装服务端（无外网）\">安装服务端（无外网）</h3>\n<h4 id=\"下载\">下载</h4>\n<p>在 <a href=\"https://update.cs2c.com.cn/NS/V10/V10SP3/os/adv/lic/base/aarch64/Packages/tigervnc-server-1.10.1-5.p04.ky10.aarch64.rpm\">公网源</a> 下载 tigervnc-server服务</p><p>上传至服务器 <code>/root/tigervnc-server</code></p><pre><code># ls /root/tigervnc-server\n</code></pre>\n<figure class=\"post__image\"><img loading=\"lazy\" src=\"file:///C:\\Users\\29503\\AppData\\Roaming\\marktext\\images\\2025-07-11-19-42-55-image.png?msec=1752907620655\" alt=\"\"  data-is-external-image=\"true\"></figure><h4 id=\"安装前检查\">安装前检查</h4>\n<pre><code># rpm -qa | grep  tigervnc-server\n</code></pre>\n<figure class=\"post__image\"><img loading=\"lazy\" src=\"file:///C:\\Users\\29503\\AppData\\Roaming\\marktext\\images\\2025-07-11-19-49-29-image.png?msec=1752907620665\" alt=\"\"  data-is-external-image=\"true\"></figure><p>（保持和图中的一致，即无本次需要安装的 tigervnc-server-1.10.1-5.p04.ky10.aarch64）</p><h4 id=\"安装\">安装</h4>\n<pre><code># rpm  -ivh  tiqervnc-server-1.10.1-5.p04.ky10.x86_64.rpm\n</code></pre>\n<p>安装后再执行检查已安装服务，可见</p><figure class=\"post__image\"><img loading=\"lazy\" src=\"file:///C:\\Users\\29503\\AppData\\Roaming\\marktext\\images\\2025-07-11-19-54-10-image.png?msec=1752907620656\" alt=\"\"  data-is-external-image=\"true\"></figure><h3 id=\"配置服务端\">配置服务端</h3>\n<h4 id=\"启动服务\">启动服务</h4>\n<pre><code># vncserver :{VCN进程id}\n</code></pre>\n<h4 id=\"开放防火墙\">开放防火墙</h4>\n<pre><code># firewall-cmd  --add-port={5900+VCN进程id}/tcp  --permanent\n\n//重启防火墙\n# firewall-cmd --reload\n</code></pre>\n<h4 id=\"查看服务列表\">查看服务列表</h4>\n<pre><code># vncserver  -list\n</code></pre>\n<h4 id=\"查看防火墙放开情况\">查看防火墙放开情况</h4>\n<pre><code># firewall-cmd --list-all\n</code></pre>\n<h4 id=\"结束服务\">结束服务</h4>\n<pre><code># vncserver  -kill :{VCN进程id}\n</code></pre>\n<h4 id=\"关闭防火墙\">关闭防火墙</h4>\n<pre><code># firewall-cmd --remove-port={5900+VCN进程id}/tcp --permanent\n\n//重启防火墙\n# firewall-cmd --reload\n</code></pre>\n<figure class=\"post__image\"><img loading=\"lazy\" src=\"file:///C:\\Users\\29503\\AppData\\Roaming\\marktext\\images\\2025-07-11-20-13-50-image.png?msec=1752907620684\" alt=\"\"  data-is-external-image=\"true\"></figure><h3 id=\"参考文档\">参考文档</h3>\n<p><a href=\"https://blog.csdn.net/u012306701/article/details/137272461\">麒麟V10-server-sp1-sp2-sp3关于vncserver安装及使用_tigervnc-server</a></p>",
+            "author": {
+                "name": "maudoo"
+            },
+            "tags": [
+            ],
+            "date_published": "2025-07-19T14:47:58+08:00",
+            "date_modified": "2025-07-19T14:49:46+08:00"
+        },
+        {
+            "id": "https://maojy2006.cn/about-me/",
+            "url": "https://maojy2006.cn/about-me/",
             "title": "📃退堂鼓一级表演家-Maudoo的说明书",
-            "summary": "👋Hi 这里是Maudoo的个人博客 这是一篇关于我的说明书，通过它你能更好的了解我 期待能和你交朋友 一起做有意思的事🧐 操作指南 联系我 随时找我 保养维护 故障排除 为什么没回复你",
-            "content_html": "<p class=\"align-center\">👋Hi 这里是Maudoo的个人博客</p>\n<p class=\"align-center\">这是一篇关于我的说明书，通过它你能更好的了解我</p>\n<p class=\"align-center\">期待能和你交朋友 一起做有意思的事🧐</p>\n<hr>\n<table style=\"border-collapse: collapse; width: 100%; height: 150.062px;\" border=\"1\">\n<tbody>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\">操作指南</td>\n<td style=\"width: 33.3007%; height: 50.0208px;\">联系我</td>\n<td style=\"width: 33.3037%; height: 50.0208px;\">随时找我</td>\n</tr>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\">保养维护</td>\n<td style=\"width: 33.3007%; height: 50.0208px;\"> </td>\n<td style=\"width: 33.3037%; height: 50.0208px;\"> </td>\n</tr>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\">故障排除</td>\n<td style=\"width: 33.3007%; height: 50.0208px;\">为什么没回复你</td>\n<td style=\"width: 33.3037%; height: 50.0208px;\"> </td>\n</tr>\n</tbody>\n</table>",
+            "summary": "👋Hi 这里是Maudoo的个人博客 这是一篇关于我的说明书，通过它你能更好的了解我 期待能和你交朋友 一起做有意思的事🧐 操作指南 如何联系我 hi@maojy2006.cn 保养维护 故障排除 为什么没回复你 可能是我意念回复了🤔 33%是土生土长的广州人+33%是爸爸的江苏老家+33%是妈妈的湖北老家 出厂18年 我的使用说明",
+            "content_html": "<h6 class=\"align-center\">👋Hi 这里是Maudoo的个人博客</h6>\n<h6 class=\"align-center\">这是一篇关于我的说明书，通过它你能更好的了解我</h6>\n<h6 class=\"align-center\">期待能和你交朋友 一起做有意思的事🧐</h6>\n<hr>\n<table style=\"border-collapse: collapse; width: 100%; height: 150.062px;\" border=\"1\">\n<tbody>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\"><span style=\"color: #95a5a6;\">操作指南</span></td>\n<td style=\"width: 33.3007%; height: 50.0208px;\">如何联系我</td>\n<td style=\"width: 33.3037%; height: 50.0208px;\">hi@maojy2006.cn</td>\n</tr>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\"><span style=\"color: #95a5a6;\">保养维护</span></td>\n<td style=\"width: 33.3007%; height: 50.0208px;\"> </td>\n<td style=\"width: 33.3037%; height: 50.0208px;\"> </td>\n</tr>\n<tr style=\"height: 50.0208px;\">\n<td style=\"width: 33.3007%; height: 50.0208px;\"><span style=\"color: #95a5a6;\">故障排除</span></td>\n<td style=\"width: 33.3007%; height: 50.0208px;\">为什么没回复你</td>\n<td style=\"width: 33.3037%; height: 50.0208px;\">可能是我意念回复了🤔</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h2>我的成分：</h2>\n<p>33%是土生土长的广州人+33%是爸爸的江苏老家+33%是妈妈的湖北老家</p>\n<h2>我的产龄：</h2>\n<p>出厂18年</p>\n<p> </p>\n<p>我的使用说明</p>",
             "author": {
                 "name": "maudoo"
             },
             "tags": [
             ],
             "date_published": "2024-09-07T17:34:55+08:00",
-            "date_modified": "2024-09-14T23:24:50+08:00"
+            "date_modified": "2025-07-19T14:46:27+08:00"
         }
     ]
 }
