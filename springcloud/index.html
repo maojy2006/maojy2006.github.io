@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>0➡1的SpringCloud速通 - Maudoo&#x27;s blog</title><meta name="description" content="什么是分布式微服务 拆分大系统为各个微服务，同一服务多节点部署。springcloud实现各远程服务的调用。 nacos服务端+微服务（注册）发现端 spring-cloud-starter-alibaba-nacos-discovery application.properties中 spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848 @EnableDiscoveryClient //开启服务发现功能！！！ @SpringBootApplication public class ProductMainApplication { public static void main(String[] args) { SpringApplication.run(ProductMainApplication.class, args); } }&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://maojy2006.cn/springcloud/"><link rel="alternate" type="application/atom+xml" href="https://maojy2006.cn/feed.xml"><link rel="alternate" type="application/json" href="https://maojy2006.cn/feed.json"><meta property="og:title" content="0➡1的SpringCloud速通"><meta property="og:site_name" content="Maudoo's blog"><meta property="og:description" content="什么是分布式微服务 拆分大系统为各个微服务，同一服务多节点部署。springcloud实现各远程服务的调用。 nacos服务端+微服务（注册）发现端 spring-cloud-starter-alibaba-nacos-discovery application.properties中 spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848 @EnableDiscoveryClient //开启服务发现功能！！！ @SpringBootApplication public class ProductMainApplication { public static void main(String[] args) { SpringApplication.run(ProductMainApplication.class, args); } }&hellip;"><meta property="og:url" content="https://maojy2006.cn//springcloud/"><meta property="og:type" content="article"><link rel="stylesheet" href="https://maojy2006.cn/assets/css/fontawesome-all.min.css?v=85514f933f9e0b82460af63f1a403fa5"><link rel="stylesheet" href="https://maojy2006.cn/assets/css/style.css?v=9274fb62a8095432057114afc1a7f7fc"><noscript><link rel="stylesheet" href="https://maojy2006.cn/assets/css/noscript.css?v=efa867a99f5064d6729e4dc2008ad50b"></noscript><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://maojy2006.cn/springcloud/"},"headline":"0➡1的SpringCloud速通","datePublished":"2025-07-28T16:06","dateModified":"2025-07-28T16:06","description":"什么是分布式微服务 拆分大系统为各个微服务，同一服务多节点部署。springcloud实现各远程服务的调用。 nacos服务端+微服务（注册）发现端 spring-cloud-starter-alibaba-nacos-discovery application.properties中 spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848 @EnableDiscoveryClient //开启服务发现功能！！！ @SpringBootApplication public class ProductMainApplication { public static void main(String[] args) { SpringApplication.run(ProductMainApplication.class, args); } }&hellip;","author":{"@type":"Person","name":"maudoo","url":"https://maojy2006.cn/authors/maudoo/"},"publisher":{"@type":"Organization","name":"maudoo"}}</script><style>#wrapper > .bg {
+               background-image: url(https://maojy2006.cn/assets/images/overlay.png), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(https://maojy2006.cn/media/website/home-2.jpg);
+           }</style><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript></head><body class="is-preload post-template"><div id="wrapper"><header id="header"><a class="logo" href="https://maojy2006.cn/">Maudoo&#x27;s blog</a></header><nav id="nav"><ul class="links"></ul></nav><main id="main"><article class="post"><header class="major"><time datetime="2025-07-28T16:06" class="date">七月 28, 2025</time><h1>0➡1的SpringCloud速通</h1><p class="post__inner"></p></header><div class="post__inner post__entry"><h3 id="什么是分布式微服务">什么是分布式微服务</h3><p>拆分大系统为各个微服务，同一服务多节点部署。springcloud实现各远程服务的调用。</p><h3 id="nacos：服务发现">Nacos：服务发现</h3><p><a href="https://nacos.io/">nacos服务端</a>+微服务（注册）发现端</p><h4 id="服务注册">服务注册</h4><h5 id="1依赖引入">1.依赖引入</h5><p>    <code>spring-cloud-starter-alibaba-nacos-discovery</code></p><h5 id="2配置nacos服务端地址">2.配置nacos服务端地址</h5><p>    <code>application.properties</code>中</p><p>    <code>spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</code></p><h5 id="3服务注册">3.服务注册</h5><pre><code class="language-java">@EnableDiscoveryClient //开启服务发现功能！！！
+@SpringBootApplication
+public class ProductMainApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ProductMainApplication.class, args);
+    }
+}
+</code></pre><p>此时可在nacos可视化界面看见被注册的服务</p><h5 id="4服务发现">4.服务发现</h5><h6 id="使用spring-cloud-commons提供的discoveryclient">使用Spring Cloud Commons提供的DiscoveryClient</h6><pre><code class="language-java">@Autowired
+DiscoveryClient discoveryClient;
+@Test
+void discoveryClientTest(){
+    //遍历服务
+    for (String service : discoveryClient.getServices()) {
+        System.out.println(&quot;service: &quot; + service);
+        //遍历各服务地址
+        List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(service);
+        for (ServiceInstance instance : instances) {
+            System.out.println(&quot;ip：&quot;+instance.getHost()+&quot; port: &quot; +instance.getPort());
+        }
+    }
+}
+</code></pre><h6 id="使用nacos提供的nacosservicediscovery">使用nacos提供的NacosServiceDiscovery</h6><pre><code class="language-java">@Autowired
+NacosServiceDiscovery nacosServiceDiscovery;
+@Test
+void nacosServiceDiscoveryTest() throws NacosException {
+    for (String service : nacosServiceDiscovery.getServices()) {
+        System.out.println(&quot;service: &quot; + service);
+        List&lt;ServiceInstance&gt; instances = nacosServiceDiscovery.getInstances(service);
+        for (ServiceInstance instance : instances) {
+            System.out.println(&quot;ip：&quot;+instance.getHost()+&quot; port: &quot;+instance.getPort());
+        }
+    }
+}
+</code></pre><h5 id="5服务调用">5.服务调用</h5><p>使用远程调用类<a href="https://blog.csdn.net/qq_62377885/article/details/137734620">RestTemplate详解</a></p><p>创建Bean</p><pre><code class="language-java">@Configuration
+public class UserConfiguration {
+    @Bean
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+</code></pre><p>调用接口</p><pre><code class="language-java">@Autowired
+RestTemplate restTemplate;
+@Test
+void testRestTemplate() {
+    String forObject = restTemplate.getForObject(&quot;http://localhost:8080/test&quot;, String.class);
+    System.out.println(forObject);
+}
+</code></pre><h4 id="负载均衡">负载均衡</h4><p>加载依赖 <code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;spring-cloud-starter-loadbalancer&lt;/font&gt;</code></p><h6 id="使用loadbalancerclient类"><font style="color:rgb(38,44,49);">使用</font><font style="color:rgb(8,8,8);">LoadBalancerClient类</font></h6><p><font style="color:rgb(38,44,49);">将服务发现寻找服务地址部分替换为</font></p><pre><code class="language-java">//获取服务所有机器IP+port
+ServiceInstance choose = loadBalancerClient.choose(&quot;service-product&quot;);
+//获取请求地址
+String url = &quot;http://&quot;+choose.getHost() +&quot;:&quot; +choose.getPort() +&quot;/product/&quot;+productId;
+</code></pre><h6 id="使用loadbalanced注释">使用<font style="color:rgb(38,44,49);">@</font><font style="color:rgb(35,41,48);">LoadBalanced注释</font></h6><p>添加注释 <code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;@&lt;/font&gt;&lt;font style=&quot;color:rgb(35,41,48);&quot;&gt;LoadBalanced&lt;/font&gt;</code></p><figure class="post__image"><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2025/png/54966136/1753101574860-5763a305-01b0-48f4-b1b3-95ff2a7b982c.png" alt="" data-is-external-image="true"></figure><p><font style="color:rgb(35,41,48);">服务调用中service-product 将会被动态替换</font></p><pre><code class="language-java">String url = &quot;http://service-product/product/&quot;+productId;
+Product product = restTemplate.getForObject(url, Product.class);
+</code></pre><h4 id="配置中心">配置中心</h4><p>引入依赖 <code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;spring-cloud-starter-alibaba-nacos-config&lt;/font&gt;</code></p><p><font style="color:rgb(38,44,49);">在 </font><code>&lt;font style=&quot;color:rgb(38,38,38);&quot;&gt;application.properties&lt;/font&gt;</code><font style="color:rgb(38,38,38);"> 配置nacos服务端地址后添加</font></p><pre><code class="language-java">spring.config.import=nacos:service-order.properties
+</code></pre><h6 id="使用refreshscope注解">使用<font style="color:rgb(38,44,49);">@</font><font style="color:rgb(35,41,48);">RefreshScope注解</font></h6><p>在Controller类加上注解 <code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;@&lt;/font&gt;&lt;font style=&quot;color:rgb(35,41,48);&quot;&gt;RefreshScope&lt;/font&gt;</code></p><h6 id="使用configurationproperties注解（自动刷新）"><font style="color:rgb(35,41,48);">使用</font><font style="color:rgb(38,38,38);">ConfigurationProperties注解（自动刷新）</font></h6><p><font style="color:rgb(38,44,49);">在实体类中加上 </font><code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;@&lt;/font&gt;&lt;font style=&quot;color:rgb(35,41,48);&quot;&gt;ConfigurationProperties&lt;/font&gt;&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;(&lt;/font&gt;&lt;font style=&quot;color:rgb(35,41,48);&quot;&gt;prefix &lt;/font&gt;&lt;font style=&quot;color:rgb(225,0,35);&quot;&gt;= &lt;/font&gt;&lt;font style=&quot;color:rgb(0,47,109);&quot;&gt;&quot;order&quot;&lt;/font&gt;&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;) &lt;/font&gt;</code></p><p><font style="color:rgb(108,119,130);">配置批量绑定在nacos下，可以无需@RefreshScope就能实现自动刷新</font></p><h6 id="nacosconfigmanager"><font style="color:rgb(38,38,38);">NacosConfigManager</font></h6><p>实时监听配置变化</p><pre><code class="language-java">@Bean
+ApplicationRunner applicationRunner(NacosConfigManager manager){
+    //函数式接口
+    return args -&gt; {
+        ConfigService configService = manager.getConfigService();
+        //选定要监听的服务和组别
+        configService.addListener(&quot;service-order.properties&quot;, &quot;DEFAULT_GROUP&quot;, new Listener() {
+            @Override
+            public Executor getExecutor() {
+                //监听器在线程池中运行
+                return Executors.newFixedThreadPool(4);
+            }
+            //接收到的监听信息
+            @Override
+            public void receiveConfigInfo(String configInfo) {
+                System.out.println(&quot;configInfo = &quot; + configInfo);
+            }
+        });
+    };
+}
+</code></pre><h4 id="配置分组">配置分组</h4><h5 id="namespace-命名空间"><font style="color:rgb(38,38,38);">namespace 命名空间</font></h5><p><font style="color:rgb(38,38,38);">实现多环境隔离，如：开发、测试、预发、生产等</font></p><h5 id="dataid-数据集id"><font style="color:rgb(38,38,38);">dataId 数据集id</font></h5><p><font style="color:rgb(38,38,38);">配置文件的名字。完整写法: </font><code>&lt;font style=&quot;color:rgb(38,38,38);&quot;&gt;名字.后缀&lt;/font&gt;</code><font style="color:rgb(38,38,38);"> 如： </font><code>&lt;font style=&quot;color:rgb(38,38,38);&quot;&gt;common.properties&lt;/font&gt;</code></p><h5 id="groupid-分组id"><font style="color:rgb(38,38,38);">groupId 分组id</font></h5><p>一般用微服务自己的名字</p><h3 id="openfeign：服务调用">OpenFeign：服务调用</h3><p>无需手动编码，自动处理向服务发送请求的过程，简化HTTP调用（就是不再需要使用Nacos提供的类手动编写服务调用过程）</p><figure class="post__image"><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2025/png/54966136/1753149347247-5abf9127-b1c5-4764-ad71-9941cc2409fb.png" alt="" data-is-external-image="true"></figure><h4 id="引入依赖">引入依赖</h4><p><code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;spring-cloud-starter-openfeign&lt;/font&gt;</code></p><p>在主函数入口加上注释 <code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;@&lt;/font&gt;&lt;font style=&quot;color:rgb(35,41,48);&quot;&gt;EnableFeignClients&lt;/font&gt;</code></p><h4 id="调用在nacos注册的服务"><font style="color:rgb(35,41,48);">调用在nacos注册的服务</font></h4><p><font style="color:rgb(35,41,48);">创建OpenFeign客户端</font></p><p>Order服务中 <code>com.example.order.feign.ProductFeignClient</code> 接口</p><pre><code class="language-java">//指定Feign客户端
+@FeignClient(&quot;stores&quot;)
+public interface StoreClient {
+    //MVC注解标注在FeignClient中，代表发送请求的地址
+    @RequestMapping(method = RequestMethod.GET, value = &quot;/stores&quot;)
+    //Feign支持将调用返回的原始json解析为指定类
+    List&lt;Store&gt; getStores();
+
+    @GetMapping(&quot;/stores&quot;)
+    Page&lt;Store&gt; getStores(Pageable pageable);
+
+    @PostMapping(value = &quot;/stores/{storeId}&quot;, consumes = &quot;application/json&quot;,params = &quot;mode=upsert&quot;)
+    Store update(@PathVariable(&quot;storeId&quot;) Long storeId, Store store);
+
+    @DeleteMapping(&quot;/stores/{storeId:\\d+}&quot;)
+    void delete(@PathVariable Long storeId);
+}
+</code></pre><p>调用</p><p>在Controller中注入</p><pre><code class="language-java">@Autowired
+ProductFeignClient productFeignClient;
+</code></pre><p>即可直接使用</p><pre><code class="language-java">Product product = productFeignClient.getProductById(productId);
+</code></pre><h4 id="调用第三方api">调用第三方Api</h4><p>创建OpenFeign客户端</p><pre><code class="language-java">@FeignClient(value = &quot;weather-client&quot;, url = &quot;http://aliv18.data.moji.com&quot;)
+public interface WeatherFeignClient {
+    @PostMapping(&quot;/whapi/json/alicityweather/condition&quot;)
+    String getWeather(@RequestHeader(&quot;Authorization&quot;) String auth,
+                        @RequestParam(&quot;token&quot;) String token,
+                        @RequestParam(&quot;cityld&quot;)string cityId);
+}
+</code></pre><p>注入接口后可直接调用</p><h4 id="开启日志">开启日志</h4><p><a href="https://docs.springframework.org.cn/spring-cloud-openfeign/reference/spring-cloud-openfeign.html#feign-logging">Spring Cloud OpenFeign 功能 :: Spring Cloud Openfeign - Spring 框架</a></p><p>在 <code>application.yml</code> 配置</p><pre><code class="language-java">logging: 
+ level: 
+ com.atguigu.order.feign: debug
+</code></pre><p>在 .config.OrderConfig 配置记录日志级别</p><pre><code class="language-java">@Configuration
+public class FooConfiguration {
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
+    }
+}
+</code></pre><h4 id="失败处理">失败处理</h4><h5 id="超时控制">超时控制</h5><p>设置服务限时等待，单一服务不可用将不会导致其他服务陷入循环等待。在这种情况下不可用的服务返回错误信息/返回兜底数据。</p><blockquote><ul><li><code>&lt;font style=&quot;color:rgb(25, 30, 30);&quot;&gt;connectTimeout&lt;/font&gt;</code><font style="color:rgb(25, 30, 30);"> 防止因服务器长时间处理而阻塞调用者。默认10s</font></li><li><code>&lt;font style=&quot;color:rgb(25, 30, 30);&quot;&gt;readTimeout&lt;/font&gt;</code><font style="color:rgb(25, 30, 30);"> 从连接建立时开始应用，并在返回响应花费太长时间时触发。默认60s</font></li></ul></blockquote><p>通过修改application文件修改某一服务的超时控制时间</p><h5 id="失败重试">失败重试</h5><p>在容器 <code>.config.OrderConfig</code> 中配置bean</p><pre><code class="language-java">@Bean
+Retryer retryer(){
+    return new Retryer.Default();
+}
+</code></pre><h4 id="请求拦截">请求拦截</h4><p>OpenFeign提供的定制需求修改器</p><pre><code class="language-java">@Component
+public class XTokenRequestInterceptor implements RequestInterceptor {
+    //请求拦截器
+    @Override
+    public void apply(RequestTemplate template){
+        System.out.println(&quot;XTokenRequestInterceptor .......&quot;);
+        template.header(&quot;X-Token&quot;,UUID.randomUUID().tostring());
+    }
+}
+</code></pre><h3 id="sentinel：服务保护">Sentinel：服务保护</h3><p><a href="https://sentinelguard.io/zh-cn/docs/quick-start.html">quick-start | Sentinel</a></p><p><font style="color:rgb(38,44,49);">引入依赖 </font><code>&lt;font style=&quot;color:rgb(38,44,49);&quot;&gt;spring-cloud-starter-alibaba-sentinel&lt;/font&gt;</code></p><p><font style="color:rgb(38,44,49);">保护各种资源（自动获取项目中编写的web接口/手动注入SphU API或@SentinelResource）</font></p><p><font style="color:rgb(38,44,49);">根据自定规则（流量规则、熔断规则、来源规则等）放行流量</font></p><h4 id="整合">整合</h4><p>启动控制面板jar包 <code>&lt;font style=&quot;color:rgb(38,38,38);&quot;&gt;java -jar sentinel-dashboard.jar&lt;/font&gt;</code></p><p>配置控制面板</p><pre><code class="language-java">spring:
+ cloud:
+  sentinel:
+   transport:
+    dashboard: localhost:8080
+</code></pre><h4 id="异常处理">异常处理</h4><figure class="post__image"><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2025/png/54966136/1753323430335-619fc1b7-aaf3-497b-9a3f-59b561bf741c.png" alt="" data-is-external-image="true"></figure><p><a href="https://sentinelguard.io/zh-cn/docs/basic-api-resource-rule.html">basic-api-resource-rule | Sentinel</a></p><h5 id="结合openfeign重写fallback">结合OpenFeign重写fallback</h5><p>实现返回默认数据/返回缓存数据</p><h6 id="开启熔断">开启熔断</h6><pre><code class="language-java">feign:
+ sentinel:
+  enabled: true
+</code></pre><h6 id="编写fallback函数">编写fallback函数</h6><pre><code class="language-java">@Component
+public class ProductFeignClientFallback implements ProductFeignClient {
+    @Override
+    public Product getProductById(Long id) {
+        System.out.println(&quot;兜底回调....&quot;);
+        Product product = new Product();
+        product.setId(id);
+        product.setPrice(new BigDecimal(&quot;0&quot;));
+        product.setProductName(&quot;兜底商品&quot;);
+        product.setNum(0);
+        return product;
+    }
+}
+</code></pre><h6 id="将接口的错误回调指向fallback">将接口的错误回调指向fallback</h6><pre><code class="language-java">@FeignClient(value = &quot;service-product&quot;,fallback = ProductFeignClientFallback.class) 
+public interface ProductFeignClient {
+    ...
+}
+</code></pre><h5 id="对web接口使用自定义blockexceptionhandler处理异常"><font style="color:rgb(38,38,38);">对web接口使用自定义BlockExceptionHandler处理异常</font></h5><p>默认的BlockExceptionHandler只输出一行string而非json，通过自定义可修改</p><p><code>.exception.MyBlockExceptionHandler</code></p><pre><code class="language-java">@Component
+public class MyBlockExceptionHandler implements BlockExceptionHandler {
+    private ObjectMapper objectMapper = new ObjectMapper();
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response,
+                        String resourceName, BlockException e) throws Exception {
+        response.setStatus(429); //too many requests
+        response.setContentType(&quot;application/json;charset=utf-8&quot;);
+        PrintWriter writer = response.getWriter();
+        //提前自定义返回数据类
+        R error = R.error(500, resourceName + &quot; 被Sentinel限制了，原因：&quot; +e.getClass());
+        String json = objectMapper.writeValueAsString(error);
+        writer.write(json);
+        writer.flush();
+        writer.close();
+     }
+}
+</code></pre><h5 id="对sentinelresource资源使用blockhandler处理异常">对@SentinelResource资源使用<font style="color:rgb(38,38,38);">blockHandler处理异常</font></h5><p><code>.service.OrderServiceImpl</code></p><pre><code class="language-java">//指定异常处理器
+@SentinelResource(value = &quot;createOrder&quot;,blockHandler = &quot;createOrderFallback&quot;)
+@Override
+    public Order createOrder(Long productId, Long userId) {
+    // Product product = getProductFromRemoteWithLoadBalanceAnnotation(productId);
+    //使用Feign完成远程调用
+    Product product = productFeignClient.getProductById(productId);
+    Order order = new Order();
+    order.setId(1L);
+    // 总金额
+    order.setTotalAmount(product.getPrice().multiply(new BigDecimal(product.getNum())));
+    order.setUserId(userId);
+    order.setNickName(&quot;zhangsan&quot;);
+    order.setAddress(&quot;china&quot;);
+    //远程查询商品列表
+    order.setProductList(Arrays.asList(product));
+    return order;
+}
+
+//兜底回调
+public Order createOrderFallback(Long productId, Long userId, BlockException e){
+    Order order = new Order();
+    order.setId(0L);
+    order.setTotalAmount(new BigDecimal(&quot;0&quot;));
+    order.setUserId(userId);
+    order.setNickName(&quot;未知用户&quot;);
+    order.setAddress(&quot;异常信息：&quot;+e.getClass());
+    return order;
+}
+</code></pre><h5 id="编写sphu调用">编写SphU调用</h5><pre><code class="language-java">try {
+    //资源名称
+    AsyncEntry entry = SphU.asyncEntry(resourceName);
+
+    // 异步调用.
+    doAsync(userId, result -&gt; {
+        try {
+            // 在此处处理异步调用的结果.
+        } finally {
+            // 在回调结束后 exit.
+            entry.exit();
+        }
+    });
+} catch (BlockException ex) {
+    //如果流量超过限制抛出错误，进行处理
+}
+</code></pre><h4 id="规则限制">规则限制</h4><h5 id="流量控制flowrule">流量控制FlowRule</h5><p><a href="https://sentinelguard.io/zh-cn/docs/flow-control.html">flow-control | Sentinel</a></p><p>限制多余请求，防止系统资源被耗尽。</p><p>根据流控模式判断某一服务的请求是否超过阈值，若超过则产生流控效果</p><h6 id="阈值类型">阈值类型</h6><blockquote><p><font style="color:rgb(38,38,38);">QPS：统计每秒请求数 （一般选用）</font></p><p><font style="color:rgb(38,38,38);">并发线程数：统计并发线程数</font></p></blockquote><h6 id="流控模式"><font style="color:rgb(38,38,38);">流控模式</font></h6><figure class="post__image"><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2025/png/54966136/1753324977121-f98aaf16-3465-4f5b-ab03-7114bff55c51.png" alt="" data-is-external-image="true"></figure><p>链路策略：仅对某一访问路径生效</p><p>关联策略：优先分配资源给重要功能</p><h6 id="流控效果">流控效果</h6><figure class="post__image"><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2025/png/54966136/1753325251595-0911cc9e-e3bc-4908-9d2d-6b09a043c5f5.png" alt="" data-is-external-image="true"></figure><p>快速失败：抛出 <code>BlockException</code> 异常，若有 <code>BlockExceptionHandler</code> 则安装自定义的步骤处理异常</p><p>冷启动：逐步启动，使程序逐步适应 QPS-单机阈值 Period-启动周期</p><p>匀速排队：在快速失败基础上不直接丢弃请求，而是放入排队队列中等候执行。当排队时长超出服务timeout时长再被丢弃。</p><h5 id="熔断控制">熔断控制</h5></div><footer class="post__inner post__footer"><p class="post__last-updated">This article was updated on 七月 28, 2025</p><div class="post__share-tag-container"><div class="post__share"><button class="post__share-button js-post__share-button icon" aria-label="Share button"><i class="fas fa-share-alt"></i></button><div class="post__share-popup js-post__share-popup"></div></div></div><div class="post__bio"><div><h3><a href="https://maojy2006.cn/authors/maudoo/" class="invert" rel="author">maudoo</a></h3></div></div></footer></article></main><footer id="copyright"><ul><li>© Maudoo</li><li><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">粤ICP备2025444811号</a></li><li>Design: <a href="https://html5up.net" target="_blank" rel="nofollow noopener">HTML5 UP</a></li><li>Powered by Publii+github+cloudflare</li></ul></footer></div><script src="https://maojy2006.cn/assets/js/jquery.min.js?v=c9771cc3e90e18f5336eedbd0fffb2cf"></script><script src="https://maojy2006.cn/assets/js/jquery.scrollex.min.js?v=f89065e3d988006af9791b44561d7c90"></script><script src="https://maojy2006.cn/assets/js/jquery.scrolly.min.js?v=1ed5a78bde1476875a40f6b9ff44fc14"></script><script src="https://maojy2006.cn/assets/js/browser.min.js?v=c07298dd19048a8a69ad97e754dfe8d0"></script><script src="https://maojy2006.cn/assets/js/breakpoints.min.js?v=81a479eb099e3b187613943b085923b8"></script><script src="https://maojy2006.cn/assets/js/util.min.js?v=4201a626f8c9b614a663b3a1d7d82615"></script><script src="https://maojy2006.cn/assets/js/main.min.js?v=56233c354bd814758be8bff42f7e13a5"></script><script>/*<![CDATA[*/var images=document.querySelectorAll("img[loading]");for(var i=0;i<images.length;i++){if(images[i].complete){images[i].classList.add("is-loaded")}else{images[i].addEventListener("load",function(){this.classList.add("is-loaded")},false)}};/*]]>*/</script></body></html>
