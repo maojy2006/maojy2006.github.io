@@ -3,7 +3,7 @@
     <title>Maudoo&#x27;s blog</title>
     <link href="https://maojy2006.cn/feed.xml" rel="self" />
     <link href="https://maojy2006.cn" />
-    <updated>2025-08-07T10:57:46+08:00</updated>
+    <updated>2025-08-08T15:46:46+08:00</updated>
     <author>
         <name>maudoo</name>
     </author>
@@ -26,8 +26,7 @@
         <content type="html">
             <![CDATA[
                 <h2 id="场景">场景</h2>
-<p>78万+条订单数据，使用ST_Distance_Sphere函数逐个判断两点距离进行比较</p><figure class="post__image"><img src="https://cdn.nlark.com/yuque/0/2025/png/54966136/1754403795978-b7187104-5e1c-404a-879d-cd5ff138a486.png" alt="待优化代码"  data-is-external-image="true"></figure><p>待优化代码</p><figure class="post__image"><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2025/png/54966136/1754404541716-716f5537-3776-44e6-be2b-df4a9e14219f.png" alt=""  data-is-external-image="true"></figure><p><figure class="post__image"><img loading="lazy" src="file:///C:\Users\29503\AppData\Roaming\marktext\images\2025-08-05-09-14-28-image.png?msec=1754535087354" alt=""  data-is-external-image="true"></figure>
-每次接口收到请求，查询数据库需要完成一次全表扫描，逐个比对且对每一条数据都执行一次昂贵的球面距离计算。</p><table>
+<p>78万+条订单数据，使用ST_Distance_Sphere函数逐个判断两点距离进行比较</p><figure class="post__image"><img src="https://media.doge.maojy2006.cn/blog/2025/2025-08-05-09-18-35-image.png" alt="待优化代码"  data-is-external-image="true"></figure><p>待优化代码</p><figure class="post__image"><img loading="lazy" src="https://media.doge.maojy2006.cn/blog/2025/2025-08-05-09-14-28-image.png" alt=""  data-is-external-image="true"></figure><p>每次接口收到请求，查询数据库需要完成一次全表扫描，逐个比对且对每一条数据都执行一次昂贵的球面距离计算。</p><table>
 <thead>
 <tr>
 <th>type</th>
@@ -75,7 +74,7 @@ CREATE SPATIAL INDEX `idx_spatial_coordinate` ON `order_information`(`coordinate
 <li>在java层以入参坐标（及半径）为中心，在地图中划出待查询范围，略去绝大部分区域</li>
 <li>在正方形中比较坐标距离，最后获得圆形区域中包含的各点</li>
 </ol>
-<figure class="post__image"><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2025/jpeg/54966136/1754484160096-818a8da7-a2ab-4035-a682-b023ce4486d1.jpeg" alt="画板"  data-is-external-image="true"></figure><p>不止这一种SQL层优化方案，现在使用的是 边界框+空间索引的方案</p><p>还有包括但不限于：Partitioning (分区)、<font style="color:rgb(44, 44, 54);">Z-Order(混合经纬度)</font></p><p>如果你需要了解更多 请看–&gt;<a href="https://mysql.rjweb.org/doc.php/find_nearest_in_mysql">MySQL Techniques for “Find Nearest”</a></p><p>但是主播在与AI的搏斗中始终没能让它给出合适的、能在我的MySQL用上创建的Point类索引的SQL。如果看到这的你知道了可以教教我</p><p>≧ ﹏ ≦</p><p>而且数据库设计文档即将完工，不好意思让写文档的同学再修改，于是尝试其他方法</p><h2 id="程序逻辑优化-整合redis实现缓存">程序逻辑优化-整合Redis实现缓存</h2>
+<figure class="post__image"><img loading="lazy" src="https://media.doge.maojy2006.cn/blog/2025/yuque_mind.jpeg" alt="画板"  data-is-external-image="true"></figure><p>不止这一种SQL层优化方案，现在使用的是 边界框+空间索引的方案</p><p>还有包括但不限于：Partitioning (分区)、<font style="color:rgb(44, 44, 54);">Z-Order(混合经纬度)</font></p><p>如果你需要了解更多 请看–&gt;<a href="https://mysql.rjweb.org/doc.php/find_nearest_in_mysql">MySQL Techniques for “Find Nearest”</a></p><p>但是主播在与AI的搏斗中始终没能让它给出合适的、能在我的MySQL用上创建的Point类索引的SQL。如果看到这的你知道了可以教教我</p><p>≧ ﹏ ≦</p><p>而且数据库设计文档即将完工，不好意思让写文档的同学再修改，于是尝试其他方法</p><h2 id="程序逻辑优化-整合redis实现缓存">程序逻辑优化-整合Redis实现缓存</h2>
 <p>我以业务逻辑为主线实现的Redis缓存。业务要求打开页面获得选择框 /getNameTable，选定某一区域获得其详细信息并且详细信息分为三页。其中第二页 /showPage2 内容需要连接多表且数据量极大的表，返回数据时间基本上在十几秒，而其他页面的访问速度并不需要通过缓存优化。但是 /showPage2 的传参多样，因此并不是很合适在启动的时候全部预加载存入Redis。因此我选择通过调用第一页 /showPage1 时使用多线程技术实现后台预加载第二页数据，在缓存加载成功后切换页面的速度将有极大提升。</p><p>实现线程池</p><pre><code class="language-java">package com.name.project.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
